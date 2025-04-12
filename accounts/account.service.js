@@ -81,7 +81,7 @@ async function register(params, origin) {
     // validate
     if (await db.Account.findOne({ where: { email: params.email } })) {
         // send already registered error in email to prevent account enumeration
-        return await sendAlertedRegisteredEmail(params.email, origin);
+        return await sendAlreadyRegisteredEmail(params.email, origin);
     }
 
     // create account object

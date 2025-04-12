@@ -82,13 +82,13 @@ function authenticateSchema (req, res, next) {
         title: Joi.string().required(),
         firstName: Joi.string().required(),
         lastName: Joi.string().required(),
-        email: Jot.string().email().required(),
+        email: Joi.string().email().required(),
         password: Joi.string().min(6).required(),
         confirmPassword: Joi.string().valid(Joi.ref('password')).required(),
         acceptTerms: Joi.boolean().valid(true).required()
     });
         
-        validateRequest(req, next, schesa);
+        validateRequest(req, next, schema);
 }
         function register(req, res, next) {
             accountService.register(req.body, req.get ('origin'))
