@@ -120,6 +120,62 @@ The boilerplate API uses Express, one of the most popular web application framew
 ![alt text](code7.png)
 ![alt text](code8.png)
 
+Alert Component Template
+Path: /src/app/_components/alert.component.html
+![alt text](code9.png)
+This component shows a list of alert messages.
+It only renders when alerts is not empty.
+Each alert has a dynamic style (like success or error).
+Alerts are dismissible with a close button.
+Messages can contain HTML content.
+
+Alert Component
+Path: /src/app/_components/alert.component.ts
+![alt text](code11.png)
+![alt text](code12.png)
+![alt text](code13.png)
+![alt text](code14.png)
+This component displays a list of alerts.
+You can customize each alert’s appearance and behavior (like fading or auto-close).
+Alerts can be removed manually or automatically.
+Alerts are cleared on navigation unless flagged to persist.
+![alt text](code15.png)
+It exports everything (all exported members) from the alert.component.ts file.
+
+App Initializer
+Path: /src/app/_helpers/app.initializer.ts
+![alt text](code16.png)
+Refreshing auth tokens before the app starts
+Loading user settings
+Fetching essential config from a server (like environment settings)
+
+Auth Guard
+Path: /src/app/_helpers/auth.guard.ts
+![alt text](code17.png)
+Allow navigation
+Redirect to login
+Block access based on user roles
+
+Error Interceptor
+Path: /src/app/_helpers/error.interceptor.ts
+![alt text](code18.png)
+Intercepts all HTTP requests/responses.
+Catches errors and allows you to:
+Log out users on specific status codes.
+Show user-friendly error messages.
+Log or track backend issues.
+
+JWT Interceptor
+Path: /src/app/_helpers/jwt.interceptor.ts
+![alt text](code19.png)
+Intercepts all HTTP requests.
+Checks if the user is logged in and if the request is going to your API.
+If both conditions are true, it adds the Authorization header with the JWT.
+
+Must Match Validator
+Path: /src/app/_helpers/must-match.validator.ts
+![alt text](code20.png)
+This validator makes sure that two fields match (like "Password" and "Confirm Password").
 
 
 Next I am goin to start with the config.json
