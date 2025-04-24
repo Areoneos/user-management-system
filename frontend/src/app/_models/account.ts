@@ -18,4 +18,5 @@ export interface Account {
   resetToken?: string;
   resetTokenExpires?: string;
   confirmPassword?: string;
+  isDeleting?: boolean;
 }
