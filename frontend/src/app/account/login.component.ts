@@ -10,6 +10,10 @@ export class LoginComponent implements OnInit {
     form: UntypedFormGroup;
     loading = false;
     submitted = false;
+  
+    passwordIncorrect = false;
+    
+    emailDoesNotExist = false;
 
     constructor(
         private formBuilder: UntypedFormBuilder,
@@ -26,16 +30,21 @@ export class LoginComponent implements OnInit {
         });
     }
 
-    // convenience getter for easy access to form fields
+   
     get f() { return this.form.controls; }
 
     onSubmit() {
         this.submitted = true;
 
-        // reset alerts on submit
+       
         this.alertService.clear();
+        t
+        this.passwordIncorrect = false;
+      
+        this.emailDoesNotExist = false;
 
-        // stop here if form is invalid
+
+       
         if (this.form.invalid) {
             return;
         }
@@ -45,12 +54,28 @@ export class LoginComponent implements OnInit {
             .pipe(first())
             .subscribe({
                 next: () => {
-                    // get return url from query parameters or default to home page
+                    
                     const returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/';
                     this.router.navigateByUrl(returnUrl);
                 },
                 error: error => {
-                    this.alertService.error(error);
+                    
+                    if (error && typeof error === 'string') {
+                        if (error === 'Email does not exist') {
+                            this.emailDoesNotExist = true;
+                        } else if (error === 'Password is incorrect') {
+                            this.passwordIncorrect = true;
+                        } else {
+                           
+                             this.alertService.error(error);
+                        }
+                    } else {
+                        
+                         this.alertService.error('An unexpected error occurred.'); 
+                         console.error(error); 
+                    }
+
+
                     this.loading = false;
                 }
             });
